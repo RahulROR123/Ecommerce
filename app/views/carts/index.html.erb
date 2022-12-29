@@ -1,0 +1,21 @@
+<h1>Cart_items</h1>
+<% if @cart.present? %>
+ <div class="row">
+   <% if @cart_item.present? %>
+      <% @cart_item.each do |cart| %>  
+         <div class="column">
+             <%if cart.product.image.present?%>
+                 <%= image_tag cart.product.image, :size => "150x150" %>
+              <%end%>
+         </div>
+         
+          <div class="column">
+            <h4>price = <%= cart.total_price%></h4>
+            <h4>name = <%= cart.product.name%></h4>
+            <h4><%= link_to "Remove", cart_path(cart.id),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></h4>
+          </div><br>
+      <%end %>     
+   <%end %>
+<%end %>

@@ -1,0 +1,14 @@
+
+<%= form_with model: @category, local: true do |form| %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :name %>
+  </p>
+ 
+
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

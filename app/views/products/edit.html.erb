@@ -1,0 +1,22 @@
+<%= form_with model: @product, local: true do |form| %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :name %>
+  </p>
+ <div>
+    <%= form.label :price %><br>
+    <%= form.text_field :price %></br>
+  </div>
+   <%= form.label :image %><br>
+    <%= form.file_field :image, accept: 'image/png, image/gif, image/jpeg, image/jpg'%></br>
+  </div>
+    <%= form.label :category_id %><br>
+    <%= form.select :category_id, options_for_select(Category.all.map{|b| [b.name, b.id]}) %><br>
+   </div>
+
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

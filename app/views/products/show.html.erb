@@ -1,0 +1,7 @@
+<h1>Products detail</h1>
+  <%= image_tag @product.image %></a>
+  <%= @product.name%>
+  <%= @product.price%>
+  <%= link_to 'Add', product_add_to_cart_path(@product.id) %>
+</br>
+
