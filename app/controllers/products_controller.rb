@@ -34,11 +34,12 @@ class ProductsController < ApplicationController
   end
   
   def add_to_cart
-    cart = Cart.find_or_create_by(user_id: current_user.id)
+    cart = Cart
+    .find_or_create_by(user_id: current_user.id)
      if cart.present?
       product = Product.find_by(id: params[:product_id])
       if cart.cart_items.find_by(product_id: product.id).present?
-        redirect_to product_path(product.id), notice: "Product is already in cart"
+        redirect_to product_path(product.id), notice: "Product is already in cart_items"
       else
         cart_item = cart.cart_items.new(product_id: product.id, total_price: product.price, product_quantity: 1)
         if cart_item.save

@@ -5,7 +5,7 @@
       <% @cart_item.each do |cart| %>  
          <div class="column">
              <%if cart.product.image.present?%>
-                 <%= image_tag cart.product.image, :size => "150x150" %>
+                 <%= image_tag cart.product.image, :size => "150x150" %></div></br>
               <%end%>
          </div>
          
@@ -16,6 +16,8 @@
                   method: :delete,
                   data: { confirm: "Are you sure?" } %></h4>
           </div><br>
-      <%end %>     
+      <%end %> 
+       <h4>Total_price = <%= @cart.cart_items.pluck(:total_price).sum%></h4>
+       <h4>Quantity = <%= @cart.cart_items.pluck(:total_quantity).count%></h4>
    <%end %>
 <%end %>
