@@ -11,13 +11,21 @@
          
           <div class="column">
             <h4>price = <%= cart.total_price%></h4>
-            <h4>name = <%= cart.product.name%></h4>
+            <h4>Name = <%= cart.product.name%></h4>
+             <h4>Quantity = <%= cart.product_quantity%></h4>
             <h4><%= link_to "Remove", cart_path(cart.id),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %></h4>
-          </div><br>
+          </div>
+        <%= form_with url: cart_update_cart_path(cart_id: cart), method: "post" do |form| %>
+          <h4> Quantity = <%= form.number_field :product_quantity, :value => cart.product_quantity %><br></h4>
+           <%= form.submit %>
+        <% end %>
       <%end %> 
        <h4>Total_price = <%= @cart.cart_items.pluck(:total_price).sum%></h4>
        <h4>Quantity = <%= @cart.cart_items.pluck(:total_quantity).count%></h4>
+       <%= form_with url: create_order_orders_path, method: "post" do |f|%>
+       <%= f.submit "Buy"%><br/><br/>
+       <%end%>
    <%end %>
 <%end %>

@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
 
 	def update
     @product = Product.find(params[:id])
-		byebug
+		
  
 	  if @product.update(product_params)
 	    redirect_to category_path, notice: "Succefully update product"
@@ -34,23 +34,21 @@ class ProductsController < ApplicationController
   end
   
   def add_to_cart
-    cart = Cart
-    .find_or_create_by(user_id: current_user.id)
+    cart = Cart.find_or_create_by(user_id: current_user.id)
      if cart.present?
       product = Product.find_by(id: params[:product_id])
       if cart.cart_items.find_by(product_id: product.id).present?
         redirect_to product_path(product.id), notice: "Product is already in cart_items"
       else
         cart_item = cart.cart_items.new(product_id: product.id, total_price: product.price, product_quantity: 1)
+        debugger
         if cart_item.save
             redirect_to carts_path
          else  
         end
       end
    end
-  
-end
-  
+ end
 	def product_params
 		params.require(:product).permit(:name, :price, :category_id, :image)		
 	end

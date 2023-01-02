@@ -1,7 +1,7 @@
 <h1>Products detail</h1>
   <%= image_tag @product.image, size: "150x160" %></a></br>
   <h5>Category_name = <%= @product.name%> </h5>
-  <h5>Product price = <%= @product.price%> </h5>
+  <h5>Product price = <%= @product.price%></h5>
   <%= link_to 'Add', product_add_to_cart_path(@product.id) %>
 </br>
 

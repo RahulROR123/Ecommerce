@@ -11,5 +11,13 @@ class CartsController < ApplicationController
     end
     redirect_to carts_path, notice: "Succefully remove cart_item"
   end
+ def update_cart
+  debugger
+    cart_item = CartItem.find_by(id: params[:cart_id])
+    product_price = cart_item.product.price  
+    up_quantity = cart_item.update(product_quantity: params[:product_quantity].to_i, total_price: params[:product_quantity].
+      to_i * product_price)
+    redirect_to carts_path
+  end
 
 end
