@@ -1,14 +1,36 @@
-<%if user_signed_in?%>     
-   <%= link_to 'Sign_out', destroy_user_session_path, method: :delete%>
-<%else%>
-     <%=link_to "login",new_user_session_path %>
-<% end %></br>
 
-<%= link_to 'Create_category',new_category_path %>
-<%= link_to 'Create_products',new_product_path %></br>
-<%= link_to 'Show_category',categories_path %>
-
-                
-
+ <br>
+<body class="bg-dark">
+      <% if current_user&.role == "super_admin"%>
+  <div class="container" style="max-width: 45%;">
+    <div class="card text-center" >
+      <div class="card-body ">
+       <h5 class=" text-center">Admin Pannel</h5><br>
+       <h6 class="card-subtitle mb-2 text-muted">Login super admin</h6>
+       <button class="btn btn-outline-primary"><%= link_to 'Create_category',new_category_path %></button>
+       <button class="btn btn-outline-primary"><%= link_to 'Create_products',new_product_path %></button></br> <button class="btn btn-outline-primary margin_space"><%= link_to 'Show_category',categories_path %>
+      </button>
+   </div>
+ </div>
+</div>
+      <%else%>
+    </br><div class="container ">
+     <div class="card text-center" >
+     <h5 class=" text-center">All products</h5><br>
+  <% @product.each_slice(4) do |products| %>
+    <div class="row">
+      <% products.each do |product| %> 
+        <div class="col-sm-3"></br>
+         <div class="text-black zoom hover p-3" style="width: 18rem">
+           <%= link_to (image_tag product.image, size: "240x180"),product_path(product)%>
+            <h4>Name = <%= product.name%></h4>
+         </div>
+       </div>
+      <% end %>
+    </div>
+   <% end %>
+  </div>    
+ </div>
+ <%end%>
 
 

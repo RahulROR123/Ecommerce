@@ -12,7 +12,7 @@
   </div>
     <%= form.label :category_id %><br>
     <%= form.select :category_id, options_for_select(Category.all.map{|b| [b.name, b.id]}) %><br>
-   </div>
+   </div
   <p>
     <%= form.submit %>
   </p>

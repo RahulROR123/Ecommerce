@@ -6,7 +6,6 @@ skip_before_action :verify_authenticity_token
 		if cart.present? and cart.cart_items.present?
 	  	price = cart.total_price * 100
 			@order = current_user.orders.new(total_price: price.to_i, total_quantity: cart.total_quantity)
-			# redirect_to pay_orders_path(order_id: @order.id)
 		   cart.cart_items.each do |order_item|
           @order_item = @order.order_items.new(product_id: order_item.product_id, total_price: order_item.total_price, product_quantity: order_item.product_quantity)
               @order_item.save
@@ -21,8 +20,8 @@ skip_before_action :verify_authenticity_token
   end
 
 	def pay
-    @order = Order.find_by(id: params[:order_id])
- end
+	    @order = Order.find_by(id: params[:order_id])
+	 end
 
 
  	def index
@@ -30,8 +29,11 @@ skip_before_action :verify_authenticity_token
      @orders = current_user.orders
    end
 
+  def show
+    @order_item = OrderItem.find(params[:id])
+  end
+
 	def update_order
-		debugger
 	      @order = Order.find_by(id: params[:id])
 	      if @order.present?
 	         payment_response = {
