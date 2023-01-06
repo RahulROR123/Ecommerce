@@ -1,0 +1,17 @@
+ <br>
+   <body class="bg-dark">
+  <div class="container" style="max-width: 45%;">
+    <div class="card text-center" >
+  <h2>Detail of my order</h2>
+  <%if @order_item.product.image.present?%>
+    <%= link_to product_path(@order_item.product_id) do%>
+      <%= image_tag @order_item.product.image %></a>
+    <%end%>
+  <% end %>
+<h3>price of product = <%= @order_item.total_price %> </h3>
+<h3>Quantity of prduct = <%= @order_item.product_quantity %> </h3>
+</div>
+</div>
+</body>
+
+

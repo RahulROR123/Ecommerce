@@ -1,0 +1,19 @@
+
+</br><div class="container ">
+     <div class="card text-center" >
+     <h5 class=" text-center">All orders</h5><br>
+  <% @order_items.each_slice(4) do |order_items| %>
+    <div class="row">
+      <% order_items.each do |order_item| %> 
+        <div class="col-sm-3"></br>
+         <div class="text-black zoom hover p-3" style="width: 18rem">
+         <%= link_to(image_tag(order_item.product.image, size: "240x180"),order_path(order_item))%><br> 
+            <h4>Name = <%= order_item.product.name%></h4>
+         </div>
+       </div>
+      <% end %>
+    </div>
+  <% end %>
+  </div>    
+</div>
+ 
